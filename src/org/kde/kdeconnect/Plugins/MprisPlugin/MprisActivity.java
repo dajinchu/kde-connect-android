@@ -20,7 +20,6 @@
 
 package org.kde.kdeconnect.Plugins.MprisPlugin;
 
-import android.app.Activity;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
@@ -38,10 +37,11 @@ import android.widget.Spinner;
 import android.widget.TextView;
 
 import org.kde.kdeconnect.Backends.BaseLink;
+import org.kde.kdeconnect.Backends.BaseLinkProvider;
 import org.kde.kdeconnect.BackgroundService;
 import org.kde.kdeconnect.Device;
-import org.kde.kdeconnect.Backends.BaseLinkProvider;
 import org.kde.kdeconnect.NetworkPackage;
+import org.kde.kdeconnect.UserInterface.NotificationPanel;
 import org.kde.kdeconnect_tp.R;
 
 import java.util.ArrayList;
@@ -241,6 +241,10 @@ public class MprisActivity extends ActionBarActivity {
         setContentView(R.layout.mpris_control);
 
         deviceId = getIntent().getStringExtra("deviceId");
+
+        Log.i("Mpris",deviceId);
+        NotificationPanel nPanel = new NotificationPanel(this, deviceId);
+
 
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
         String interval_time_str = prefs.getString(getString(R.string.mpris_time_key),
