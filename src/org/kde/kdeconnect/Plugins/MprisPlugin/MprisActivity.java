@@ -52,6 +52,7 @@ public class MprisActivity extends ActionBarActivity {
     //TODO 2: Add a message when no players are detected after loading completes
 
     private String deviceId;
+    NotificationPanel nPanel;
 
     protected void connectToPlugin() {
 
@@ -86,7 +87,7 @@ public class MprisActivity extends ActionBarActivity {
                                 } else {
                                     ((ImageButton) findViewById(R.id.play_button)).setImageResource(android.R.drawable.ic_media_play);
                                 }
-
+                                nPanel.updateStatus(s,isPlaying);
                             }
                         });
                     }
@@ -242,8 +243,7 @@ public class MprisActivity extends ActionBarActivity {
 
         deviceId = getIntent().getStringExtra("deviceId");
 
-        Log.i("Mpris",deviceId);
-        NotificationPanel nPanel = new NotificationPanel(this, deviceId);
+        nPanel = new NotificationPanel(this, deviceId);
 
 
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);

@@ -1,7 +1,8 @@
 package org.kde.kdeconnect.UserInterface;
 
-import android.app.Activity;
-import android.os.Bundle;
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.Intent;
 import android.util.Log;
 
 import org.kde.kdeconnect.BackgroundService;
@@ -11,17 +12,16 @@ import org.kde.kdeconnect.Plugins.MprisPlugin.MprisPlugin;
 /**
  * Created by Da-Jin on 12/8/2014.
  */
-public class NotificationReturnSlot extends Activity {
+public class NotificationReturnSlot extends BroadcastReceiver {
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        String action = (String) getIntent().getStringExtra("DO");
-        final String deviceId =  getIntent().getStringExtra("ID");
+    public void onReceive(Context context, Intent intent) {
+        String action = intent.getStringExtra("DO");
+        final String deviceId = intent.getStringExtra("ID");
         Log.i("NotificationReturnSlot", action+deviceId);
         if (action.equals("play")) {
             Log.i("NotificationReturnSlot", "Playpause");
-            BackgroundService.RunCommand(NotificationReturnSlot.this, new BackgroundService.InstanceCallback() {
+            BackgroundService.RunCommand(context, new BackgroundService.InstanceCallback() {
                 @Override
                 public void onServiceStart(BackgroundService service) {
                     Device device = service.getDevice(deviceId);
@@ -32,7 +32,7 @@ public class NotificationReturnSlot extends Activity {
             });
         } else if (action.equals("next")) {
             Log.i("NotificationReturnSlot", "stopNotification");
-            BackgroundService.RunCommand(NotificationReturnSlot.this, new BackgroundService.InstanceCallback() {
+            BackgroundService.RunCommand(context, new BackgroundService.InstanceCallback() {
                 @Override
                 public void onServiceStart(BackgroundService service) {
                     Device device = service.getDevice(deviceId);
@@ -42,7 +42,7 @@ public class NotificationReturnSlot extends Activity {
                 }
             });
         }else if(action.equals("prev")){
-            BackgroundService.RunCommand(NotificationReturnSlot.this, new BackgroundService.InstanceCallback() {
+            BackgroundService.RunCommand(context, new BackgroundService.InstanceCallback() {
                 @Override
                 public void onServiceStart(BackgroundService service) {
                     Device device = service.getDevice(deviceId);
@@ -52,6 +52,5 @@ public class NotificationReturnSlot extends Activity {
                 }
             });
         }
-        finish();
     }
 }

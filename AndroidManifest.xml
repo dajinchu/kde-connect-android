@@ -175,11 +175,7 @@
             </intent-filter>
         </activity>
 
-        <activity android:name="org.kde.kdeconnect.UserInterface.NotificationReturnSlot"
-            android:launchMode="singleTask"
-            android:taskAffinity=""
-            android:excludeFromRecents="true">
-        </activity>
+        <receiver android:name="org.kde.kdeconnect.UserInterface.NotificationReturnSlot"></receiver>
 
 
         <service android:name="org.kde.kdeconnect.Plugins.NotificationsPlugin.NotificationReceiver"

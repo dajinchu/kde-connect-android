@@ -41,24 +41,36 @@ public class NotificationPanel {
         nManager.notify(2, nBuilder.build());
     }
 
+    public void updateStatus(String songName, boolean isPlaying){
+        remoteView.setTextViewText(R.id.notification_song, songName);
+        if(isPlaying){
+            remoteView.setImageViewResource(R.id.notification_play_pause, android.R.drawable.ic_media_pause);
+        }else{
+            remoteView.setImageViewResource(R.id.notification_play_pause, android.R.drawable.ic_media_play);
+        }
+        nBuilder.setContent(remoteView);
+        nManager.notify(2,nBuilder.build());
+    }
+
     public void setListeners(RemoteViews view){
         Intent playpause = new Intent(parent,NotificationReturnSlot.class);
         playpause.putExtra("DO", "play");
         playpause.putExtra("ID",deviceId);
         //Log.i("Panel", deviceId);
-        PendingIntent btn1 = PendingIntent.getActivity(parent, 1, playpause, 0);
+        PendingIntent btn1 = PendingIntent.getBroadcast(parent, 1, playpause, 0);
         view.setOnClickPendingIntent(R.id.notification_play_pause, btn1);
 
         Intent next = new Intent(parent, NotificationReturnSlot.class);
         next.putExtra("DO", "next");
         next.putExtra("ID",deviceId);
-        PendingIntent btn2 = PendingIntent.getActivity(parent, 2, next, 0);
+        PendingIntent btn2 = PendingIntent.getBroadcast(parent, 2, next, 0);
         view.setOnClickPendingIntent(R.id.notification_next, btn2);
 
         Intent prev = new Intent(parent, NotificationReturnSlot.class);
         prev.putExtra("DO", "prev");
         prev.putExtra("ID",deviceId);
-        PendingIntent btn3 = PendingIntent.getActivity(parent, 3, prev, 0);
+        PendingIntent btn3 = PendingIntent.getBroadcast(
+                parent, 3, prev, 0);
         view.setOnClickPendingIntent(R.id.notification_prev, btn3);
     }
 
