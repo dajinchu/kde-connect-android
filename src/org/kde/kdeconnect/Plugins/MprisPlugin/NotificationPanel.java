@@ -24,6 +24,7 @@ import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.support.v4.app.NotificationCompat;
+import android.util.Log;
 import android.widget.RemoteViews;
 
 import org.kde.kdeconnect_tp.R;
@@ -72,20 +73,20 @@ public class NotificationPanel {
     public void setListeners(RemoteViews view){
         Intent playpause = new Intent(parent,NotificationReturnSlot.class);
         playpause.putExtra("action", "play");
-        playpause.putExtra("deviceID",deviceId);
-        //Log.i("Panel", deviceId);
+        playpause.putExtra("deviceId",deviceId);
+        Log.i("Panel", deviceId);
         PendingIntent btn1 = PendingIntent.getBroadcast(parent, 1, playpause, 0);
         view.setOnClickPendingIntent(R.id.notification_play_pause, btn1);
 
         Intent next = new Intent(parent, NotificationReturnSlot.class);
         next.putExtra("action", "next");
-        next.putExtra("deviceID",deviceId);
+        next.putExtra("deviceId",deviceId);
         PendingIntent btn2 = PendingIntent.getBroadcast(parent, 2, next, 0);
         view.setOnClickPendingIntent(R.id.notification_next, btn2);
 
         Intent prev = new Intent(parent, NotificationReturnSlot.class);
         prev.putExtra("action", "prev");
-        prev.putExtra("deviceID",deviceId);
+        prev.putExtra("deviceId",deviceId);
         PendingIntent btn3 = PendingIntent.getBroadcast(
                 parent, 3, prev, 0);
         view.setOnClickPendingIntent(R.id.notification_prev, btn3);

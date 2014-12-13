@@ -35,7 +35,7 @@ public class NotificationReturnSlot extends BroadcastReceiver {
     @Override
     public void onReceive(Context context, Intent intent) {
         String action = intent.getStringExtra("action");
-        final String deviceId = intent.getStringExtra("deviceID");
+        final String deviceId = intent.getStringExtra("deviceId");
         Log.i("NotificationReturnSlot", action+deviceId);
         if (action.equals("play")) {
             Log.i("NotificationReturnSlot", "Playpause");
