@@ -12,7 +12,8 @@
         android:text="Song Name"
         android:layout_gravity="center_vertical"
         android:layout_weight="1"
-        android:singleLine="true"/>
+        android:singleLine="true"
+        android:paddingLeft="3dp" />
 
     <ImageButton
         android:id="@+id/notification_prev"
