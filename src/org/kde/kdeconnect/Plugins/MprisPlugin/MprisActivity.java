@@ -131,14 +131,17 @@ public class MprisActivity extends ActionBarActivity {
                         runOnUiThread(new Runnable() {
                             @Override
                             public void run() {
-                                if(playerList.size()==0){
-                                    findViewById(R.id.no_players).setVisibility(View.VISIBLE);
-                                }else{
-                                    findViewById(R.id.no_players).setVisibility(View.INVISIBLE);
-                                }
                                 Spinner spinner = (Spinner) findViewById(R.id.player_spinner);
                                 //String prevPlayer = (String)spinner.getSelectedItem();
                                 spinner.setAdapter(adapter);
+
+                                if(playerList.size()==0){
+                                    findViewById(R.id.no_players).setVisibility(View.VISIBLE);
+                                    spinner.setVisibility(View.GONE);
+                                }else{
+                                    findViewById(R.id.no_players).setVisibility(View.GONE);
+                                    spinner.setVisibility(View.VISIBLE);
+                                }
 
                                 spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                                     @Override
