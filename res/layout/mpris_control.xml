@@ -16,7 +16,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="No Players Connected"
+        android:text="@string/no_players_connected"
         android:id="@+id/no_players"
         android:layout_gravity="center_horizontal" />
 
