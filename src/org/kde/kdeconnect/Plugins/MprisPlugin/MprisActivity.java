@@ -135,7 +135,7 @@ public class MprisActivity extends ActionBarActivity {
                                 //String prevPlayer = (String)spinner.getSelectedItem();
                                 spinner.setAdapter(adapter);
 
-                                if(playerList.size()==0){
+                                if(playerList.isEmpty()){
                                     findViewById(R.id.no_players).setVisibility(View.VISIBLE);
                                     spinner.setVisibility(View.GONE);
                                 }else{
